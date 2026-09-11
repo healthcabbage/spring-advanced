@@ -1,5 +1,6 @@
 package com.gamebasic.game.service;
 
+import com.gamebasic.common.exception.GameFinishedException;
 import com.gamebasic.common.exception.GameNotFoundException;
 import com.gamebasic.game.dto.*;
 import com.gamebasic.game.entity.Game;
@@ -63,7 +64,7 @@ public class GameService {
         Game game = findGame(gameId);
 
         if (game.isFinished()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "이미 끝난 게임입니다.");
+            throw new GameFinishedException(gameId);
         }
 
         game.updateProgress(
