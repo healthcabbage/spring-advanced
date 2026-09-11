@@ -1,9 +1,11 @@
 🌙 **붉은 달의 성채 - 게임 저장 서버 구현**
+
 붉은 달의 성채의 게임 진행 데이터를 저장하고, 관리하기 위한 Spring Boot 기반 게임 저장 서버입니다.
 
 게임의 생성, 조회, 진행 상태 저장, 삭제 기능, 이름 변경을 API로 구현했으며, 게임 진행 정부와 게임에 사용되는 RunCard(덱) 데이터를 함께 관리합니다.
 
 📌 **프로젝트 개요**
+
 게임 플레이 중 발생하는 진행 데이터를 서버에 저장하여 게임 상태를 관리할 수 있도록 구현했습니다.
 
 저장되는 주요 게임 정보는 다음과 같습니다.
@@ -18,6 +20,7 @@
 특히 이미 종료된 게임에 대해서는 진행 저장 요청을 차단하여 기존 게임 데이터가 변경되지 않도록 예외 처리를 적용했습니다.
 
 🛠 **기술 스택**
+
 Java 21
 Spring Boot
 Spring Data JPA
@@ -37,6 +40,7 @@ Postman
 게임 삭제
 
 💾 **게임 진행 저장**
+
 게임 진행 중 변경되는 데이터를 서버에 저장합니다.
 
 현재 HP
@@ -56,6 +60,7 @@ RunCard 덱
 이를 통해 종료된 게임의 진행 데이터가 변경되는 것을 방지합니다.
 
 🏗️ **프로젝트 구조**
+
 Controller
     ↓
 Service
@@ -65,12 +70,15 @@ Repository
 MySQL
 
 **Controller**
+
 HTTP 요청과 응답을 처리합니다.
 
 **Service**
+
 게임 진행 저장 및 삭제 등 게임 저장 서버의 비즈니스 로직을 처리합니다.
 
 **Repository**
+
 Spring Data JPA를 이용하여 Game과 RunCard 데이터를 데이터베이스와 연동합니다.
 
 🧩 **3-Layer Architecture**
@@ -118,6 +126,7 @@ GameFinishedException	409	이미 종료된 게임
 Validation 오류	400	잘못된 요청 데이터
 
 **종료된 게임의 진행 저장**
+
 PUT /games/{gameId}/progress
             ↓
        Game 조회
@@ -136,6 +145,7 @@ Exception       저장
 GameFinishedException은 실제 데이터 변경 전에 발생하기 때문에 종료된 게임의 진행 정보가 변경되지 않습니다.
 
 📡 **API**
+
 Method	Endpoint	설명
 POST	/games	게임 생성
 GET	/games	게임 목록 조회
@@ -144,6 +154,7 @@ PUT	/games/{gameId}/progress	게임 진행 저장
 DELETE	/games/{gameId}	게임 삭제
 
 🚀 **실행 방법**
+
 1. 프로젝트 Clone
 git clone <repository-url>
 cd <project-directory>
